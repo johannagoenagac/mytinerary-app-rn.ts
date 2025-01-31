@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
+import { View, Text, Image, StyleSheet, Dimensions, ViewProps } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 
 interface City {
@@ -7,15 +7,15 @@ interface City {
   image: string;
 }
 
-interface CarouselProps {
+interface CarouselProps extends ViewProps {
   cities: City[];
 }
 
 const { width } = Dimensions.get("window");
 
-const CarouselComponent: React.FC<CarouselProps> = ({ cities }) => {
+const CarouselComponent = ({ cities, ...rest }: CarouselProps) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container}{...rest}>
       <Carousel
         loop
         width={width}

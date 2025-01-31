@@ -1,14 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ViewProps } from "react-native";
 
-interface HeroProps {
+interface HeroProps extends ViewProps {
   title: string;
   subtitle: string;
 }
 
-const Hero: React.FC<HeroProps> = ({ title, subtitle }) => {
+const Hero = ({ title, subtitle, ...rest  }: HeroProps) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container}{...rest}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
       <TouchableOpacity style={styles.button}>
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    padding: 30,
     backgroundColor: "#5cdca8",
     height: 200,
   },
