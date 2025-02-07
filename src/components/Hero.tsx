@@ -6,9 +6,9 @@ interface HeroProps extends ViewProps {
   subtitle: string;
 }
 
-const Hero = ({ title, subtitle, ...rest  }: HeroProps) => {
+const Hero = ({ title, subtitle }: HeroProps) => {
   return (
-    <View style={styles.container}{...rest}>
+    <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
       <TouchableOpacity style={styles.button}>
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    padding: 30,
+ //   padding: 30,
     backgroundColor: "#5cdca8",
     height: 200,
   },
