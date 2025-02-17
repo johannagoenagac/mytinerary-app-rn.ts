@@ -1,10 +1,7 @@
 import { Text, Image, StyleSheet, TouchableOpacity, ViewProps } from "react-native";
 import { useRouter } from "expo-router";
+import { City } from "../types/city";
 
-interface City {
-  name: string;
-  image: string;
-}
 
 interface CityCardProps extends ViewProps {
   city: City;
@@ -18,7 +15,7 @@ const CityCard = ({city }:CityCardProps) => {
       style={styles.card}
       
       onPress={() => 
-        router.push(`/tabs/cities/${city.name}`)}
+        router.push(`/cities/${city.name}`)}
     >
       <Image source={{ uri: city.image }} style={styles.image} />
       <Text style={styles.name}>{city.name}</Text>

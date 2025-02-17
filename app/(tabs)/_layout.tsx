@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default function Layout() {
   return (
+    
     <Tabs>
       <Tabs.Screen
         name="home"
@@ -17,6 +18,7 @@ export default function Layout() {
         name="cities"
         options={{
           title: "Cities",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="location-outline" size={size} color={color} />
           ),
