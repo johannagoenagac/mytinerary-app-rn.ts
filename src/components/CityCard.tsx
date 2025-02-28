@@ -1,6 +1,6 @@
 import { Text, Image, StyleSheet, TouchableOpacity, ViewProps } from "react-native";
 import { useRouter } from "expo-router";
-import { City } from "../types/city";
+import { City } from "../types/City";
 
 
 interface CityCardProps extends ViewProps {

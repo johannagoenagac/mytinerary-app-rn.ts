@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, FlatList, StyleSheet, ActivityIndicator, TextInput } from "react-native";
 import CityCard from "../../../src/components/CityCard";
 import { fetchCities } from "../../../src/services/api";
-import { City } from "../../../src/types/city";
+import { City } from "../../../src/types/City";
 
 const Cities = () => {
   const [cities, setCities] = useState<City[]>([]);

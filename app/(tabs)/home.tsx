@@ -3,7 +3,7 @@ import { View, StyleSheet, ActivityIndicator } from "react-native";
 import Hero from "../../src/components/Hero";
 import CarouselComponent from "../../src/components/Carousel";
 import { fetchCities } from "../../src/services/api";
-import { City } from "../../src/types/city";
+import { City } from "../../src/types/City";
 
 const Home = () => {
   const [cities, setCities] = useState<City[]>([]);

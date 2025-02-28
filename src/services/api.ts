@@ -1,5 +1,5 @@
 import axios from "axios";
-import { City } from "../types/city";
+import { City } from "../types/City";
 
 const API_URL = "https://mytinerary-server.onrender.com/api/cities";
 
