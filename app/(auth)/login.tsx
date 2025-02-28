@@ -28,7 +28,7 @@ export default function LoginScreen() {
   const onSubmit = async (data: LoginForm) => {
     const result = await dispatch(loginUser(data));
     if (loginUser.fulfilled.match(result)) {
-      router.replace('/(tabs)/home');
+      router.replace('/(tabs)');
     }
   };
 
@@ -39,8 +39,12 @@ export default function LoginScreen() {
       <Text>Contraseña:</Text>
       <TextInput style={styles.input} secureTextEntry onChangeText={(text) => setValue('password', text)} />
       {error && <Text style={styles.error}>{error}</Text>}
+
+      <View style={styles.buttonContainer}>
       <Button title={loading ? 'Cargando...' : 'Iniciar Sesión'} onPress={handleSubmit(onSubmit)} disabled={loading} />
       <Button title="Registrarse" onPress={() => router.push('/(auth)/register')} />
+      </View>
+      
     </View>
   );
 }
@@ -49,4 +53,5 @@ const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', padding: 20 },
   input: { borderBottomWidth: 1, marginBottom: 10, padding: 8 },
   error: { color: 'red', marginBottom: 10 },
+  buttonContainer: { marginTop: 20, gap: 10 },
 });

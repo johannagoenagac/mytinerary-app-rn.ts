@@ -31,7 +31,7 @@ export default function RegisterScreen() {
   const onSubmit = async (data: RegisterForm) => {
     const result = await dispatch(registerUser(data));
     if (registerUser.fulfilled.match(result)) {
-      router.replace('/(tabs)/home');
+      router.replace('/(tabs)');
     }
   };
 
@@ -48,8 +48,12 @@ export default function RegisterScreen() {
       <Text>País:</Text>
       <TextInput style={styles.input} onChangeText={(text) => setValue('country', text)} />
       {error && <Text style={styles.error}>{error}</Text>}
+
+      <View style={styles.buttonContainer}>
       <Button title={loading ? 'Registrando...' : 'Registrarse'} onPress={handleSubmit(onSubmit)} disabled={loading} />
       <Button title="Ya tengo una cuenta" onPress={() => router.push('/(auth)/login')} />
+      </View>
+      
     </View>
   );
 }
@@ -58,4 +62,5 @@ const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', padding: 20 },
   input: { borderBottomWidth: 1, marginBottom: 10, padding: 8 },
   error: { color: 'red', marginBottom: 10 },
+  buttonContainer: { marginTop: 20, gap: 10 },
 });

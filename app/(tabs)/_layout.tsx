@@ -27,7 +27,7 @@ export default function Layout() {
 
  
   if (!isAuthenticated) {
-    return <Redirect href="/auth/login" />;
+    return <Redirect href="/(auth)/login" />;
   }
 
   return (

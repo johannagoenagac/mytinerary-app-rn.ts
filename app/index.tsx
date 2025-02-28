@@ -25,8 +25,8 @@ export default function Index() {
 
  
   if (isAuthenticated) {
-    return <Redirect href="/home" />;
+    return <Redirect href="/(tabs)/home" />;
   } else {
-    return <Redirect href="/auth/login" />;
+    return <Redirect href="/(auth)/login" />;
   }
 }
