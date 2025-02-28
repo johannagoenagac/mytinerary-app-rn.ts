@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { User } from '../types/User';
+import { loadUserFromStorage } from '../store/authSlice';
 
 interface AuthContextProps {
   user: User | null;
@@ -13,18 +14,25 @@ const AuthContext = createContext<AuthContextProps>({ user: null, loading: true 
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
     const loadUser = async () => {
-      const userData = await AsyncStorage.getItem('user');
-      if (userData) {
-        // Todo Dispatch
+      try {
+        const userData = await AsyncStorage.getItem('user');
+        if (userData) {
+          dispatch(loadUserFromStorage(JSON.parse(userData)));
+        }
+      } catch (error) {
+        console.error('Error al cargar usuario desde AsyncStorage:', error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
+
     loadUser();
-  }, []);
+  }, [dispatch]);
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
