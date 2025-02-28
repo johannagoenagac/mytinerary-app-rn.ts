@@ -17,7 +17,7 @@ const initialState: AuthState = {
 
 const API_URL = 'https://mytinerary-server.onrender.com/api/auth';
 
-// Registro de usuario
+
 export const registerUser = createAsyncThunk(
   'auth/register',
   async (userData: Omit<User, '_id' | 'token'>, { rejectWithValue }) => {
@@ -30,7 +30,7 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-// Inicio de sesión
+
 export const loginUser = createAsyncThunk(
   'auth/login',
   async (credentials: { email: string; password: string }, { rejectWithValue }) => {
