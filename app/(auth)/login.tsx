@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppDispatch } from '../../src/store/store';
@@ -21,7 +21,7 @@ export default function LoginScreen() {
   const { loading, error } = useSelector((state: RootState) => state.auth);
   const router = useRouter();
 
-  const { register, handleSubmit, setValue } = useForm<LoginForm>({
+  const { control, handleSubmit } = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
   });
 
@@ -35,16 +35,29 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <Text>Email:</Text>
-      <TextInput style={styles.input} onChangeText={(text) => setValue('email', text)} />
+      <Controller
+        control={control}
+        name="email"
+        render={({ field: { onChange, value } }) => (
+          <TextInput style={styles.input} onChangeText={onChange} value={value} keyboardType="email-address" />
+        )}
+      />
+
       <Text>Contraseña:</Text>
-      <TextInput style={styles.input} secureTextEntry onChangeText={(text) => setValue('password', text)} />
+      <Controller
+        control={control}
+        name="password"
+        render={({ field: { onChange, value } }) => (
+          <TextInput style={styles.input} secureTextEntry onChangeText={onChange} value={value} />
+        )}
+      />
+
       {error && <Text style={styles.error}>{error}</Text>}
 
       <View style={styles.buttonContainer}>
-      <Button title={loading ? 'Cargando...' : 'Iniciar Sesión'} onPress={handleSubmit(onSubmit)} disabled={loading} />
-      <Button title="Registrarse" onPress={() => router.push('/(auth)/register')} />
+        <Button title={loading ? 'Cargando...' : 'Iniciar Sesión'} onPress={handleSubmit(onSubmit)} disabled={loading} />
+        <Button title="Registrarse" onPress={() => router.push('/(auth)/register')} />
       </View>
-      
     </View>
   );
 }
