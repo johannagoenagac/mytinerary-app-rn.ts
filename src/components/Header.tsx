@@ -6,7 +6,7 @@ interface HeroProps extends ViewProps {
   subtitle: string;
 }
 
-const Hero = ({ title, subtitle }: HeroProps) => {
+const Header = ({ title, subtitle }: HeroProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Hero;
+export default Header;

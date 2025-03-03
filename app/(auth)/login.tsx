@@ -28,7 +28,7 @@ export default function LoginScreen() {
   const onSubmit = async (data: LoginForm) => {
     const result = await dispatch(loginUser(data));
     if (loginUser.fulfilled.match(result)) {
-      router.replace('/(tabs)');
+      router.replace('/(tabs)/home');
     }
   };
 
